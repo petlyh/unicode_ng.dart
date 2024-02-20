@@ -3,10 +3,11 @@ class CaseMapping {
   final Map<int, int> titlecase;
   final Map<int, int> uppercase;
 
-  const CaseMapping(
-      {required this.lowercase,
-      required this.titlecase,
-      required this.uppercase});
+  const CaseMapping({
+    required this.lowercase,
+    required this.titlecase,
+    required this.uppercase,
+  });
 
   Map<String, Map<int, int>> toMap() => {
         'lowercase': lowercase,
@@ -14,7 +15,7 @@ class CaseMapping {
         'uppercase': uppercase,
       };
 
-  static CaseMapping fromCharacters(List<Character?> characters) {
+  factory CaseMapping.fromCharacters(List<Character?> characters) {
     final lc = <int, int>{};
     final tc = <int, int>{};
     final uc = <int, int>{};

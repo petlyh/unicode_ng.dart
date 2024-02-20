@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 /// Range list.
 @immutable
@@ -15,7 +15,8 @@ class RangeList extends Object with ListMixin<int> {
   RangeList(this.start, this.end) : hashCode = start.hashCode | end.hashCode {
     if (start > end) {
       throw ArgumentError(
-          "The value of the argument 'start' is greater than the value of the argument 'end': $this");
+        "The value of the argument 'start' is greater than the value of the argument 'end': $this",
+      );
     }
 
     _length = end - start + 1;
@@ -56,7 +57,7 @@ class RangeList extends Object with ListMixin<int> {
   }
 
   @override
-  bool operator ==(other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }

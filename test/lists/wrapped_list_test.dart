@@ -1,5 +1,5 @@
-import 'package:unicode_ng/src/lists/lists.dart';
 import 'package:test/test.dart';
+import 'package:unicode_ng/src/lists/lists.dart';
 
 void main() {
   test('', () {
@@ -8,7 +8,7 @@ void main() {
   });
 }
 
-WrappedList list(List source) => WrappedList(source);
+WrappedList<int> list(List<int> source) => WrappedList<int>(source);
 
 void testContent() {
   final result = list([0, 1, 2, 3, 4, 5]);

@@ -1,5 +1,5 @@
-import 'package:unicode_ng/src/lists/lists.dart';
 import 'package:test/test.dart';
+import 'package:unicode_ng/src/lists/lists.dart';
 
 void main() {
   test('bit list', testContent);
@@ -10,7 +10,7 @@ BitList list(int length, [bool fill = false]) => BitList(length, fill);
 void testContent() {
   var result = list(3);
   expect(result, [false, false, false], reason: 'BitList');
-  result = list(3, false);
+  result = list(3);
   expect(result, [false, false, false], reason: 'BitList');
   result = list(3, true);
   expect(result, [true, true, true], reason: 'BitList');

@@ -11,6 +11,7 @@ import 'models.dart';
 
 void main(List<String> args) async {
   if (args.isEmpty) {
+    // ignore: avoid_print
     print('Supply filename as first argument');
     return;
   }

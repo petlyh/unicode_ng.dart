@@ -1,11 +1,15 @@
-include: package:lints/recommended.yaml
+include: package:lint/package.yaml
 
 linter:
   rules:
-    - prefer_single_quotes
-    - avoid_final_parameters
-    - prefer_final_locals
-    - prefer_final_in_for_each
-    - prefer_const_constructors
-    - prefer_const_constructors_in_immutables
-    - prefer_const_declarations
+    prefer_single_quotes: true
+    avoid_catching_errors: false
+    constant_identifier_names: false
+
+analyzer:
+  language:
+    strict-inference: true
+    strict-raw-types: true
+
+  exclude:
+    - lib/src/unicode.g.dart

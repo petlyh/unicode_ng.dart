@@ -1,6 +1,6 @@
 // import 'package:unicode/unicode.dart' as unicode;
-import 'package:unicode_ng/unicode.dart' as unicode;
 import 'package:test/test.dart';
+import 'package:unicode_ng/unicode.dart' as unicode;
 
 void main() {
   test('Unicode', () {
@@ -112,11 +112,12 @@ void testUnassigned() {
   expect(result, unicode.notAssigned, reason: subject);
 }
 
-void measure(String msg, Function() f) {
+void measure(String msg, void Function() f) {
   final sw = Stopwatch();
   sw.start();
   f();
   sw.stop();
   final time = sw.elapsedMicroseconds / 1000000;
+  // ignore: avoid_print
   print('$msg: $time sec');
 }

@@ -1,5 +1,5 @@
-import 'package:unicode_ng/src/lists/lists.dart';
 import 'package:test/test.dart';
+import 'package:unicode_ng/src/lists/lists.dart';
 
 RangeList rng(int start, int end) {
   return RangeList(start, end);
@@ -104,26 +104,29 @@ void testrng() {
 void testSubtract() {
   var result = rng(0, 5).subtract(rng(2, 4));
   expect(
-      result,
-      [
-        [0, 1],
-        [5]
-      ],
-      reason: 'RangeList.subtract');
+    result,
+    [
+      [0, 1],
+      [5],
+    ],
+    reason: 'RangeList.subtract',
+  );
   result = rng(0, 5).subtract(rng(0, 5));
-  expect(result, [], reason: 'RangeList.subtract');
+  expect(result, <RangeList>[], reason: 'RangeList.subtract');
   result = rng(2, 7).subtract(rng(1, 4));
   expect(
-      result,
-      [
-        [5, 6, 7]
-      ],
-      reason: 'RangeList.subtract');
+    result,
+    [
+      [5, 6, 7],
+    ],
+    reason: 'RangeList.subtract',
+  );
   result = rng(2, 7).subtract(rng(4, 9));
   expect(
-      result,
-      [
-        [2, 3]
-      ],
-      reason: 'RangeList.subtract');
+    result,
+    [
+      [2, 3],
+    ],
+    reason: 'RangeList.subtract',
+  );
 }

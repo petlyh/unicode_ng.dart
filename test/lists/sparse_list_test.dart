@@ -1,5 +1,5 @@
-import 'package:unicode_ng/src/lists/lists.dart';
 import 'package:test/test.dart';
+import 'package:unicode_ng/src/lists/lists.dart';
 
 void main() {
   test('', () {
@@ -25,26 +25,6 @@ void main() {
 const int failureValue = 13;
 
 const int successValue = 41;
-
-List<int> flatten1(SparseList list) {
-  final groups = list.getGroups(RangeList(0, list.length));
-  return groups.fold(<int>[], (List<int> p, GroupedRangeList? c) {
-    p.add(c!.start);
-    p.add(c.end);
-    return p;
-  });
-}
-
-List<int?> flatten2(SparseList<int> list) {
-  final groups = list.getGroups(RangeList(0, list.length));
-  return groups.fold<List<int?>>(<int?>[],
-      (List<int?> p, GroupedRangeList<int?>? c) {
-    p.add(c!.start);
-    p.add(c.end);
-    p.add(c.key);
-    return p;
-  });
-}
 
 GroupedRangeList<T> grp<T>(int start, int end, T value) {
   return GroupedRangeList<T>(start, end, value);
@@ -111,7 +91,7 @@ void testClear() {
   sparse.setGroup(grp(0, 2, 1));
   sparse.clear();
   final actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   final groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
 }
@@ -199,15 +179,16 @@ void testGetAllSpace() {
   sparse.addGroup(grp(7, 8, successValue));
   final space = sparse.getAllSpace(rng(0, 10));
   expect(
-      space,
-      [
-        [0, 1],
-        [2, 3],
-        [4, 5, 6],
-        [7, 8],
-        [9, 10]
-      ],
-      reason: subject);
+    space,
+    [
+      [0, 1],
+      [2, 3],
+      [4, 5, 6],
+      [7, 8],
+      [9, 10],
+    ],
+    reason: subject,
+  );
 }
 
 void testGetGroups() {
@@ -220,83 +201,90 @@ void testGetGroups() {
   var groups = sparse.getGroups(rng(0, 4)).toList();
   var actual = groups;
   expect(
-      actual,
-      [
-        [0],
-        [2],
-        [4]
-      ],
-      reason: subject);
+    actual,
+    [
+      [0],
+      [2],
+      [4],
+    ],
+    reason: subject,
+  );
   //
   groups = sparse.getGroups(rng(0, 0)).toList();
   actual = groups;
   expect(
-      actual,
-      [
-        [0]
-      ],
-      reason: subject);
+    actual,
+    [
+      [0],
+    ],
+    reason: subject,
+  );
   //
   groups = sparse.getGroups(rng(0, 2)).toList();
   actual = groups;
   expect(
-      actual,
-      [
-        [0],
-        [2]
-      ],
-      reason: subject);
+    actual,
+    [
+      [0],
+      [2],
+    ],
+    reason: subject,
+  );
   //
   groups = sparse.getGroups(rng(2, 2)).toList();
   actual = groups;
   expect(
-      actual,
-      [
-        [2]
-      ],
-      reason: subject);
+    actual,
+    [
+      [2],
+    ],
+    reason: subject,
+  );
   //
   groups = sparse.getGroups(rng(2, 4)).toList();
   actual = groups;
   expect(
-      actual,
-      [
-        [2],
-        [4]
-      ],
-      reason: subject);
+    actual,
+    [
+      [2],
+      [4],
+    ],
+    reason: subject,
+  );
   //
   sparse = SparseList<int>();
   sparse.addGroup(grp(0, 2, 1));
   groups = sparse.getGroups(rng(1, 1)).toList();
   actual = groups;
   expect(
-      actual,
-      [
-        [0, 1, 2]
-      ],
-      reason: subject);
+    actual,
+    [
+      [0, 1, 2],
+    ],
+    reason: subject,
+  );
   // Get all groups
   sparse = SparseList<int>();
   sparse.addGroup(grp(0, 2, 1));
   groups = sparse.getGroups().toList();
   actual = groups;
   expect(
-      actual,
-      [
-        [0, 1, 2]
-      ],
-      reason: subject);
+    actual,
+    [
+      [0, 1, 2],
+    ],
+    reason: subject,
+  );
   // From empty list
   sparse = SparseList<int>();
   groups = sparse.getGroups(rng(0, 0)).toList();
   actual = groups;
-  expect(actual, [], reason: subject);
+  expect(actual, <GroupedRangeList<int>>[], reason: subject);
   // From empty list
   sparse = SparseList<int>();
   groups = sparse.getGroups(rng(1, 2)).toList();
   actual = groups;
-  expect(actual, [], reason: subject);
+  expect(actual, <GroupedRangeList<int>>[], reason: subject);
 }
 
 void testGetIndexes() {
@@ -341,7 +329,7 @@ void testRemoveValues() {
   sparse.length = 3;
   sparse.removeValues(rng(0, 2));
   var actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   var groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
   var actualLength = sparse.length;
@@ -351,7 +339,7 @@ void testRemoveValues() {
   sparse.addGroup(grp(0, 2, 1));
   sparse.removeValues(rng(0, 2));
   actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
   actualLength = sparse.length;
@@ -381,7 +369,7 @@ void testRemoveValues() {
   sparse.length = 3;
   sparse.removeValues(rng(0, 1));
   actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
   actualLength = sparse.length;
@@ -424,7 +412,7 @@ void testRemoveValues() {
   sparse.setGroup(grp(2, 4, 1));
   sparse.removeValues(rng(0, 5));
   actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
   actualLength = sparse.length;
@@ -436,7 +424,7 @@ void testRemoveValues() {
   sparse.setGroup(grp(3, 4, 1));
   sparse.removeValues(rng(0, 5));
   actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
   actualLength = sparse.length;
@@ -915,7 +903,7 @@ void testTrim() {
   sparse.length = 3;
   sparse.trim();
   var actual = sparse;
-  expect(actual, [], reason: subject);
+  expect(actual, <int>[], reason: subject);
   var groupCount = sparse.groupCount;
   expect(groupCount, 0, reason: subject);
   var length = sparse.length;
@@ -966,7 +954,10 @@ List<RangeList> _patternToRanges(List<bool> pattern) {
   return ranges;
 }
 
-void _walk(int depth, Function(List<bool> first, List<bool> second) action) {
+void _walk(
+  int depth,
+  void Function(List<bool> first, List<bool> second) action,
+) {
   final count = 1 << depth;
   for (var i = 0; i < count; i++) {
     final first = List<bool>.filled(depth, false);

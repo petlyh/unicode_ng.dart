@@ -17,13 +17,19 @@ Spec generateMapping(String name, List<int> data) =>
         .assign(generateIntMappingRef.call([literalList(data)]))
         .statement;
 
-Spec generateIsCategory(String name, String characterSet) => Method((b) => b
-  ..name = 'is$name'
-  ..returns = const Reference('bool')
-  ..requiredParameters.add(Parameter((b) => b
-    ..name = 'character'
-    ..type = const Reference('int')))
-  ..body = Reference(characterSet)
-      .index(const Reference('character'))
-      .nullChecked
-      .code);
+Spec generateIsCategory(String name, String characterSet) => Method(
+      (b) => b
+        ..name = 'is$name'
+        ..returns = const Reference('bool')
+        ..requiredParameters.add(
+          Parameter(
+            (b) => b
+              ..name = 'character'
+              ..type = const Reference('int'),
+          ),
+        )
+        ..body = Reference(characterSet)
+            .index(const Reference('character'))
+            .nullChecked
+            .code,
+    );

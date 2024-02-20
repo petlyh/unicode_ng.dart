@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 /// List which are points to the other list at the specified index.
 /// var plist = new ListPointer(base, 20);
@@ -28,16 +28,15 @@ class ListPointer<T> extends Object with ListMixin<T> {
   }
 
   @override
-  ListPointer<T> operator +(other) {
+  ListPointer<T> operator +(Object other) {
     if (other is int) {
-      final i = other as int;
-      return ListPointer<T>(base, offset + i);
+      return ListPointer<T>(base, offset + other);
     }
 
     throw ArgumentError.value(other, 'other');
   }
 
-  ListPointer<T> operator -(other) {
+  ListPointer<T> operator -(Object other) {
     if (other is int) {
       return ListPointer<T>(base, offset - other);
     }
@@ -45,7 +44,7 @@ class ListPointer<T> extends Object with ListMixin<T> {
     throw ArgumentError.value(other, 'other');
   }
 
-  bool operator <(other) {
+  bool operator <(Object other) {
     if (other is ListPointer) {
       if (identical(base, other.base)) {
         return offset < other.offset;
@@ -59,7 +58,7 @@ class ListPointer<T> extends Object with ListMixin<T> {
     return false;
   }
 
-  bool operator <=(other) {
+  bool operator <=(Object other) {
     if (other is ListPointer) {
       if (identical(base, other.base)) {
         return offset <= other.offset;
@@ -74,7 +73,7 @@ class ListPointer<T> extends Object with ListMixin<T> {
   }
 
   @override
-  bool operator ==(other) {
+  bool operator ==(Object other) {
     if (other is ListPointer) {
       if (identical(base, other.base)) {
         if (offset == other.offset) {
@@ -95,7 +94,7 @@ class ListPointer<T> extends Object with ListMixin<T> {
   @override
   int get hashCode => Object.hashAll([base, offset]);
 
-  bool operator >(other) {
+  bool operator >(Object other) {
     if (other is ListPointer) {
       if (identical(base, other.base)) {
         return offset > other.offset;
@@ -109,7 +108,7 @@ class ListPointer<T> extends Object with ListMixin<T> {
     return false;
   }
 
-  bool operator >=(other) {
+  bool operator >=(Object other) {
     if (other is ListPointer) {
       if (identical(base, other.base)) {
         return offset >= other.offset;
@@ -129,7 +128,7 @@ class ListPointer<T> extends Object with ListMixin<T> {
   }
 
   @override
-  void operator []=(int index, value) {
+  void operator []=(int index, T value) {
     base[offset + index] = value;
   }
 

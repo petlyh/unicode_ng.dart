@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 class StepList extends Object with ListMixin<int> {
   final int end;
@@ -62,7 +62,7 @@ class StepList extends Object with ListMixin<int> {
 
   /// Returns true if list contains the [value]; otherwise false.
   @override
-  bool contains(value) {
+  bool contains(Object? value) {
     if (value == null || value is! int) {
       return false;
     }

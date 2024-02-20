@@ -1,11 +1,11 @@
-part of lists;
+part of 'lists.dart';
 
 /// The [RangeList] with key.
 @immutable
 class GroupedRangeList<TKey> extends RangeList {
   final TKey key;
 
-  GroupedRangeList(int start, int end, this.key) : super(start, end);
+  GroupedRangeList(super.start, super.end, this.key);
 
   /// Returns the intersection of this grouped range list and the [other] grouped
   /// range list; otherwise null.

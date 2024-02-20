@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 /// Sparse list based on the grouped range lists.
 class SparseList<E extends Object> extends Object with ListMixin<E?> {
@@ -165,7 +165,8 @@ class SparseList<E extends Object> extends Object with ListMixin<E?> {
 
     if (value == null && defaultValue != null) {
       ArgumentError(
-          "Collection can't contains null because default value is not null.");
+        "Collection can't contains null because default value is not null.",
+      );
     }
 
     if (_equals(value, defaultValue)) {
@@ -396,21 +397,24 @@ class SparseList<E extends Object> extends Object with ListMixin<E?> {
       return 0;
     }
 
+    var newLeft = left;
+    var newRight = right;
     int middle;
-    while (left < right) {
-      middle = (left + right) >> 1;
+
+    while (newLeft < newRight) {
+      middle = (newLeft + newRight) >> 1;
       if (_groups[middle].end < key) {
-        left = middle + 1;
+        newLeft = middle + 1;
       } else {
-        right = middle;
+        newRight = middle;
       }
     }
 
-    if (left > 0) {
-      left--;
+    if (newLeft > 0) {
+      newLeft--;
     }
 
-    return left;
+    return newLeft;
   }
 
   void _resetValues(RangeList range) {
@@ -451,7 +455,8 @@ class SparseList<E extends Object> extends Object with ListMixin<E?> {
     _groups.insertAll(left, newGroups);
   }
 
-  void _setGroup(GroupedRangeList<E> group) {
+  void _setGroup(GroupedRangeList<E> inputGroup) {
+    var group = inputGroup;
     final groupKey = group.key;
     final length = _groups.length;
     if (length == 0) {
@@ -523,6 +528,8 @@ class SparseList<E extends Object> extends Object with ListMixin<E?> {
     newGroups.sort((a, b) => a.start.compareTo(b.start));
     _groups.removeRange(left, left + count);
     _groups.insertAll(
-        left, newGroups.where((e) => !_equals(e.key, defaultValue)));
+      left,
+      newGroups.where((e) => !_equals(e.key, defaultValue)),
+    );
   }
 }

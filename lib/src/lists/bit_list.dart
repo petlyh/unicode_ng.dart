@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 class BitList extends Object with ListMixin<bool> {
   /// Length of list.

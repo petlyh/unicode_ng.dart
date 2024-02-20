@@ -1,5 +1,5 @@
-import 'package:unicode_ng/src/lists/lists.dart';
 import 'package:test/test.dart';
+import 'package:unicode_ng/src/lists/lists.dart';
 
 void main() {
   test('', () {

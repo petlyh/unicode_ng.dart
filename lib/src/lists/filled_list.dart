@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 class FilledList<E> extends Object with ListMixin<E> {
   final E _fill;

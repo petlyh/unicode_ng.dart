@@ -1,4 +1,4 @@
-part of lists;
+part of 'lists.dart';
 
 class WrappedList<E> extends Object with ListMixin<E> {
   final List<E> _source;

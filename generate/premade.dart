@@ -105,7 +105,7 @@ List<int> ${toRunesRef.symbol}(String string) {
     if ((start & 0xFC00) == 0xD800 && i < length) {
       final end = string.codeUnitAt(i);
       if ((end & 0xFC00) == 0xDC00) {
-        runes[pos] = (0x10000 + ((start & 0x3FF) << 10) + (end & 0x3FF));
+        runes[pos] = 0x10000 + ((start & 0x3FF) << 10) + (end & 0x3FF);
         i++;
       } else {
         runes[pos] = start;
@@ -136,7 +136,7 @@ int ${toRuneRef.symbol}(String string) {
   if ((start & 0xFC00) == 0xD800) {
     final end = string.codeUnitAt(1);
     if ((end & 0xFC00) == 0xDC00) {
-      return (0x10000 + ((start & 0x3FF) << 10) + (end & 0x3FF));
+      return 0x10000 + ((start & 0x3FF) << 10) + (end & 0x3FF);
     }
   }
 
